@@ -1,0 +1,6 @@
+[submodule "loan-api"]
+	path = loan-api
+	url = git@github.com:evananyonga/loan-api.git
+[submodule "loan-dashboard"]
+	path = loan-dashboard
+	url = git@github.com:evananyonga/loan-dashboard.git

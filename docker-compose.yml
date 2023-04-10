@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+
+  # Python Application
+  api:
+    build:
+      context: loan-api
+      dockerfile: Dockerfile
+    container_name: loan-api
+    restart: always
+    ports:
+      - "8073:80"
+    volumes:
+      - ./loan-api/:/var/www/loan-api
+  interface:
+    build:
+      context: loan-dashboard
+      dockerfile: Dockerfile
+    container_name: loan-dashboard
+    restart: always
+    ports:
+      - "3007:3000"
+    volumes:
+      - ./loan-ui/:/var/www/loan-dashboard
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - loansdb_data:/var/lib/postgresql/data/
+    env_file:
+      - ./loan-api/.env
+    ports:
+      - 5437:5432
+
+volumes:
+  loansdb_data:
